@@ -6,7 +6,7 @@ import (
 )
 
 type UserActivity struct {
-	_id       bson.ObjectId `bson: "_id"`
+	Id        bson.ObjectId `bson: "_id"`
 	UserId    bson.ObjectId
 	SessionId string
 	IpAddress string

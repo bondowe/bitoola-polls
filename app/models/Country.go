@@ -1,6 +1,6 @@
 package models
 
 type Country struct {
-	Code  string
+	Code  string `bson:"_id"`
 	Names map[string]string
 }

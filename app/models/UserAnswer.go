@@ -6,7 +6,7 @@ import (
 )
 
 type UserAnswer struct {
-	_Id        bson.ObjectId `bson: "_id"`
+	Id         bson.ObjectId `bson: "_id"`
 	UserId     bson.ObjectId
 	PollId     bson.ObjectId
 	QuestionId bson.ObjectId

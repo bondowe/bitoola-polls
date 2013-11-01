@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	_Id          bson.ObjectId `bson: "_id"`
+	Id           bson.ObjectId `bson: "_id"`
 	Alias        string
 	Gender       string
 	DateOfBirth  time.Time

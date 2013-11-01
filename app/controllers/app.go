@@ -1,11 +1,14 @@
 package controllers
 
-import "github.com/robfig/revel"
+import (
+	"github.com/robfig/revel"
+)
 
 type App struct {
-	*revel.Controller
+	BaseController
 }
 
 func (c App) Index() revel.Result {
-	return c.Render()
+	fname := "Elondo Mb."
+	return c.RenderView(fname)
 }

@@ -6,7 +6,7 @@ import (
 )
 
 type Poll struct {
-	_Id              bson.ObjectId
+	Id               bson.ObjectId
 	ShortDescription string
 	LongDescription  string
 	ImageUrl         string
