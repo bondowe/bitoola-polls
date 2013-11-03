@@ -32,5 +32,5 @@ func (c BaseController) RenderView(extraRenderArgs ...interface{}) revel.Result 
 			"(Method", c.MethodType.Name, ")")
 	}
 	loc := strings.Split(c.Request.Locale, "-")[0]
-	return c.RenderTemplate("skins" + "/" + "default" + "/" + loc + "/" + c.Name + "/" + c.MethodType.Name + "." + c.Request.Format)
+	return c.RenderTemplate("skins" + "/" + "default" + "/" + loc + "/" + c.Name + "/" + c.MethodType.Name + ".html")
 }
