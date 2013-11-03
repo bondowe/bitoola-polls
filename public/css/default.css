@@ -13,11 +13,20 @@ body {
 	padding-left: 0px;
 }
 
-.navbar-text.sign-up {
+.navbar-text.sign-up, 
+.navbar-text.sign-out {
+	margin-right: 20px !important;
 	margin-left: 4px;
 }
 
-.navbar-text.sign-up a {
+.navbar-text.sign-out span {
+	margin-right: 10px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.navbar-text.sign-up a,
+.navbar-text.sign-out a {
 	text-decoration: underline;
 }
 

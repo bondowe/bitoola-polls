@@ -1,5 +1,5 @@
 package viewmodels
 
-type LoginViewModel struct {
+type SignInViewModel struct {
 	Name string
 }

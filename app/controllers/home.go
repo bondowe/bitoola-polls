@@ -8,7 +8,7 @@ type Home struct {
 	BaseController
 }
 
-func (c Home) Default() revel.Result {
+func (c Home) Main() revel.Result {
 	return c.RenderView()
 }
 

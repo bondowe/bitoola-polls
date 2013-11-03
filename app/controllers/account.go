@@ -17,10 +17,14 @@ func (c Account) SignUp(model viewmodels.SignUpViewModel) revel.Result {
 	return c.Todo()
 }
 
-func (c Account) LoginForm() revel.Result {
+func (c Account) SignInForm() revel.Result {
 	return c.Todo()
 }
 
-func (c Account) Login(model viewmodels.LoginViewModel) revel.Result {
+func (c Account) SignIn(model viewmodels.SignInViewModel) revel.Result {
+	return c.Todo()
+}
+
+func (c Account) SignOut() revel.Result {
 	return c.Todo()
 }
