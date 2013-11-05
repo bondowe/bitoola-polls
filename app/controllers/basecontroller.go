@@ -31,6 +31,10 @@ func (c BaseController) RenderView(extraRenderArgs ...interface{}) revel.Result 
 		revel.ERROR.Println("No RenderArg names found for Render call on line", line,
 			"(Method", c.MethodType.Name, ")")
 	}
-	loc := strings.Split(c.Request.Locale, "-")[0]
-	return c.RenderTemplate("skins" + "/" + "default" + "/" + loc + "/" + c.Name + "/" + c.MethodType.Name + ".html")
+
+	return c.RenderTemplate("skins" + "/" + "default" + "/" + c.Lang() + "/" + c.Name + "/" + c.MethodType.Name + ".html")
+}
+
+func (c BaseController) Lang() string {
+	return strings.Split(c.Request.Locale, "-")[0]
 }

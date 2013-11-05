@@ -7,9 +7,10 @@ bitoolaPolls.config(['$interpolateProvider', '$routeProvider', '$locationProvide
 	$locationProvider.html5Mode(false)
 	                 .hashPrefix('!');
 	$routeProvider.when('/home', {templateUrl: 'home/index', controller: 'HomeCtrl'})
-	              .when('/signup', {templateUrl: 'account/signupform', controller: 'AccountCtrl'})
-				  .when('/signin', {templateUrl: 'account/signinform', controller: 'AccountCtrl'})
-				  .when('/signout', {templateUrl: 'account/signout', controller: 'AccountCtrl'})
+	              .when('/sign-up', {templateUrl: 'account/signupform', controller: 'AccountCtrl'})
+				  .when('/sign-in', {templateUrl: 'account/signinform', controller: 'AccountCtrl'})
+				  .when('/sign-out', {templateUrl: 'account/signout', controller: 'AccountCtrl'})
+				  .when('/reset-password', {templateUrl: 'account/passwordresetform', controller: 'AccountCtrl'})
 				  .otherwise({ redirectTo: '/home'});
 }]);
 
@@ -20,6 +21,7 @@ bitoolaPolls.value('seoService', {
 
 bitoolaPolls.service('authService', function() {
 	this.user = {};
+	this.authenticating = false;
 	this.isUserAuthenticated = function() {
 		return this.user && this.user.email;
 	}
@@ -48,7 +50,26 @@ bitoolaPolls.directive('pageMetaDescription', ['seoService', function(seoService
 	};
 }]);
 
+bitoolaPolls.directive('captcha', [function() {
+	return {
+		restrict: 'AE',
+		replace: false,
+		link: function(scope, elem, attrs, ctrl) {
+			$.get('/account/captcha')
+			 .done(function(data) {
+			 	elem.replaceWith(data);
+			 	createCaptcha();
+			 });
+		}
+	};
+}]);
+
+
 bitoolaPolls.controller('MainCtrl', ['$scope', '$http', 'seoService', 'authService', function($scope, $http, seoService, authService) {
+	$scope.pageTitle = '';
+	$scope.pageMetaDescription = '';
+	$scope.user = null;
+	$scope.authenticating = false;
 	$scope.$watch(function(){ return seoService.pageTitle }, function(newTitle) {
 		$scope.pageTitle = newTitle;
 	});
@@ -57,6 +78,9 @@ bitoolaPolls.controller('MainCtrl', ['$scope', '$http', 'seoService', 'authServi
 	});
 	$scope.$watch(function(){ return authService.user }, function(user) {
 		$scope.user = user;
+	}, true);
+	$scope.$watch(function(){ return authService.authenticating }, function(authenticating) {
+		$scope.authenticating = authenticating;
 	}, true);
 
 	$scope.isUserAuthenticated = function() {
@@ -72,12 +96,12 @@ bitoolaPolls.controller('HomeCtrl', ['$scope', '$http', 'seoService', 'authServi
 
 }]);
 
-bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', function($scope, $http) {
-	
+bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', 'authService', function($scope, $http, authService) {
+	authService.authenticating = true;
 }]);
 
-bitoolaPolls.run(['$location', '$rootScope', function($location, $rootScope) {
+bitoolaPolls.run(['$rootScope', 'authService', function($rootScope, authService) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        // $rootScope.title = current.title;
+        authService.authenticating = (current.controller == 'AccountCtrl');
     });
 }]);

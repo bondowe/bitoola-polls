@@ -1,5 +1,7 @@
 package viewmodels
 
 type SignInViewModel struct {
-	Name string
+	Email      string
+	Password   string
+	RememberMe bool
 }

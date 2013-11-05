@@ -1,0 +1,12 @@
+<div id="captchaContainer" />
+<script type="text/javascript">
+  function createCaptcha() {
+      Recaptcha.create("6LeSx-kSAAAAAFIRC8fO2DfJWoAMcclzxKcgFmY9",
+        "captchaContainer",
+        {
+          theme: "blackglass",
+          lang:'{{ .lang }}'
+        }
+      );
+  }
+</script>

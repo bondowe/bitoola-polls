@@ -1,10 +1,56 @@
 body {
 	padding-top: 60px;
 	padding-bottom: 50px;
+	min-height: 800px;
+}
+
+fieldset.form {
+	width: 390px;
+	padding: 60px 20px 20px 20px;
+	position: relative;
+	background-color: #eeeeee;
+	border-radius: 8px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+fieldset.form legend {
+	width: 100%;
+	margin-left: -20px;
+	position: absolute;
+	top: 8px;
+}
+
+fieldset.form legend span {
+	margin-left: 25px;	
+	font-size: 25px;
+	font-weight: bold;
+}
+
+fieldset.form .col-sm-10 {
+	width: 98%;
+}
+
+fieldset.form .control-label {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+fieldset.form select.form-control {
+	padding: 2px;
+}
+
+.form .form-group {
+	margin-bottom: 8px !important;
+}
+
+.form-btn-offset {
+	margin-left: 280px;
 }
 
 .navbar-brand {
-	font-size: 46px;
+	font-size: 40px;
 	font-weight: bold;
 }
 
@@ -53,3 +99,21 @@ body {
 	margin: 10px 0px;
 }
 
+.form-foot-note {
+	display: block;
+	margin-top: 10px;
+	padding: 10px;
+	border-top: 1px solid #e5e5e5;
+	clear: both;
+}
+
+#captchaContainer {
+	margin-left: 32px;
+	display: block;
+	margin-bottom: 15px;
+}
+
+.recaptchatable * {
+    border: 0 !important;
+    line-height: normal !important;
+}
