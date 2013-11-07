@@ -39,6 +39,18 @@ bitoolaPolls.directive('pageTitle', ['seoService', function(seoService) {
 	};
 }]);
 
+bitoolaPolls.directive('popover', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, elem, attrs, ctrl) {
+			var p = $('#' + attrs.popover);
+			if(p) {
+				elem.popover({trigger: 'focus', html:true, title: p.find('.title').html(), content: p.find('.content').html()});
+			}
+		}
+	};
+});
+
 bitoolaPolls.directive('pageMetaDescription', ['seoService', function(seoService) {
 	return {
 		restrict: 'AE',
@@ -105,3 +117,4 @@ bitoolaPolls.run(['$rootScope', 'authService', function($rootScope, authService)
         authService.authenticating = (current.controller == 'AccountCtrl');
     });
 }]);
+

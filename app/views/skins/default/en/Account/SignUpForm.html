@@ -2,33 +2,33 @@
 
 <fieldset class="form ng-cloak">
 	<legend><span>Sign up</span></legend>
-	<form class="form-horizontal" role="form">
+	<form class="form-horizontal" novalidate="true" role="form" name="signUpForm">
 	  <div class="form-group">
 	    <label for="firstname" class="col-sm-3 control-label">Firstname</label>
 	    <div class="col-sm-9">
-	      <input type="text" class="form-control" id="firstname" placeholder="Firstname" />
+	      <input type="text" autofocus="true" required="true" ng-minlength="2" ng-maxlength="20" class="form-control" id="firstname" name="firstname" data-ng-model="form.user.firstname" placeholder="Please enter your email firstname" data-popover="popoverFirstname" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="lastname" class="col-sm-3 control-label">Lastname</label>
 	    <div class="col-sm-9">
-	      <input type="text" class="form-control" id="lastname" placeholder="Lastname" />
+	      <input type="text" required="true" ng-minlength="2" ng-maxlength="20" class="form-control" id="lastname" name="lastname" data-ng-model="form.user.lastname" placeholder="Please enter your lastname"  data-popover="popoverLastname" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="username" class="col-sm-3 control-label">Username</label>
 	    <div class="col-sm-9">
-	      <input type="text" class="form-control" id="username" placeholder="Username" />
+	      <input type="text" required="true" ng-minlength="4" ng-maxlength="8" class="form-control" id="username" name="username" data-ng-model="form.user.username" placeholder="Please enter your username" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	  	<label for="username" class="col-sm-3 control-label">Gender</label>
 	    <div class="col-sm-9">
 		  	<label class="radio-inline">
-				<input type="radio" id="genderFemale" name="gender" value="F">Female
+				<input type="radio" id="genderFemale" name="gender" value="F" data-ng-model="form.user.gender">Female
 			</label>
 			<label class="radio-inline">
-			  <input type="radio" id="genderMale" name="gender" value="M">Male
+			  <input type="radio" id="genderMale" name="gender" value="M" data-ng-model="form.user.gender">Male
 			</label>
 		 </div>
 	  </div>
@@ -36,8 +36,8 @@
 	  	<label for="dateOfBirth" class="col-sm-3 control-label">Date of birth</label>
 	    <div class="col-sm-9">
 		  	<label class="inline">
-				<select class="form-control" name="dateOfBirth.day" id="dateOfBirth_day">
-                  <option>Day</option>
+				<select required="true" class="form-control" name="dateOfBirth.day" id="dateOfBirth_day" data-ng-model="form.user.dateOfBirth.day">
+                  <option value="">Day</option>
 				  <option>1</option>
 				  <option>2</option>
 				  <option>3</option>
@@ -72,7 +72,7 @@
 				</select>
 			</label>
 			<label class="inline">
-				<select class="form-control" name="dateOfBirth.month" id="dateOfBirth_month">
+				<select required="true" class="form-control" name="dateOfBirth.month" id="dateOfBirth_month" data-ng-model="form.user.dateOfBirth.month">
 				  <option value="">Month</option>
 				  <option value="1">January</option>
 				  <option value="2">February</option>
@@ -90,8 +90,8 @@
 				</select>
 			</label>
 			<label class="inline">
-				<select class="form-control" name="dateOfBirth.year" id="dateOfBirth_year">
-				  <option>Year</option>
+				<select required="true" class="form-control" name="dateOfBirth.year" id="dateOfBirth_year" data-ng-model="form.user.dateOfBirth.year">
+				  <option value="">Year</option>
 				  <option>2</option>
 				  <option>3</option>
 				  <option>4</option>
@@ -103,25 +103,25 @@
 	  <div class="form-group">
 	    <label for="email" class="col-sm-3 control-label">Email</label>
 	    <div class="col-sm-9">
-	      <input type="email" class="form-control" id="email" placeholder="Email" />
+	      <input type="email" required="true" class="form-control" id="email" name="email" data-ng-model="form.user.email" placeholder="Please enter your email address" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="emailConfirm" class="col-sm-3 control-label">Confirm</label>
 	    <div class="col-sm-9">
-	      <input type="email" class="form-control" id="emailConfirm" placeholder="Confirm your email" />
+	      <input type="email" required="true" class="form-control" id="emailConfirm" name="emailConfirm" data-ng-model="form.user.emailConfirm" placeholder="Please confirm your email address" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="inputPassword" class="col-sm-3 control-label">Password</label>
 	    <div class="col-sm-9">
-	      <input type="password" class="form-control" id="inputPassword" placeholder="Password" />
+	      <input type="password" required="true"  ng-minlength="5" ng-maxlength="20"class="form-control" id="inputPassword" name="inputPassword" data-ng-model="form.user.password" placeholder="Please enter your password" />
 	    </div>
 	  </div>
 	  <div captcha="true" />
 	  <div class="form-group">
 	    <div class="col-sm-9">
-	      <button class="form-btn-offset btn btn-info">Sign up</button>
+	      <button class="form-btn-offset btn btn-info" ng-disabled="signUpForm.$invalid">Sign up</button>
 	    </div>
 	  </div>
 	  <div class="form-foot-note">
@@ -130,3 +130,28 @@
 	</form>
 </fieldset>
 
+<div class="popover-container" id='popoverFirstname' >
+	<p class="title">
+		Please enter your firstname
+	</p>
+	<div class="content">
+		<p>Your firstname is required and must:</p>
+		<ul>
+			<li>Be between 2 and 20 characters long</li>
+			<li>Contain only alpha-numeric characters</li>
+		</ul>
+	</div>
+</div>
+
+<div class="popover-container" id='popoverLastname' >
+	<p class="title">
+		Please enter your lastname
+	</p>
+	<div class="content">
+		<p>Your lastname is required and must:</p>
+		<ul>
+			<li>Be between 2 and 20 characters long</li>
+			<li>Contain only alpha-numeric characters</li>
+		</ul>
+	</div>
+</div>

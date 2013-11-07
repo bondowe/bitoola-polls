@@ -41,6 +41,11 @@ fieldset.form select.form-control {
 	padding: 2px;
 }
 
+
+.form input.ng-dirty.ng-invalid {
+	border: 1px solid #ff0000;
+}
+
 .form .form-group {
 	margin-bottom: 8px !important;
 }
@@ -117,3 +122,16 @@ fieldset.form select.form-control {
     border: 0 !important;
     line-height: normal !important;
 }
+
+.popover {
+	width: 300px;
+}
+
+.popover-container {
+	display: none;
+}
+
+.popover-title {
+	font-weight: bold;
+}
+
