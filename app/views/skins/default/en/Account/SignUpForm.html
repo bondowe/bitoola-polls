@@ -18,7 +18,7 @@
 	  <div class="form-group">
 	    <label for="username" class="col-sm-3 control-label">Username</label>
 	    <div class="col-sm-9">
-	      <input type="text" required="true" ng-minlength="4" ng-maxlength="8" class="form-control" id="username" name="username" data-ng-model="form.user.username" placeholder="Please enter your username" />
+	      <input type="text" required="true" ng-minlength="4" ng-maxlength="8" class="form-control" id="username" name="username" data-ng-model="form.user.username" placeholder="Please enter your username" data-popover="popoverUsername" />
 	    </div>
 	  </div>
 	  <div class="form-group">
@@ -36,39 +36,8 @@
 	  	<label for="dateOfBirth" class="col-sm-3 control-label">Date of birth</label>
 	    <div class="col-sm-9">
 		  	<label class="inline">
-				<select required="true" class="form-control" name="dateOfBirth.day" id="dateOfBirth_day" data-ng-model="form.user.dateOfBirth.day">
+				<select required="true" class="form-control" name="dateOfBirth.day" id="dateOfBirth_day" data-ng-model="form.user.dateOfBirth.day" data-ng-options="i for i in range(1, 31, 1)">
                   <option value="">Day</option>
-				  <option>1</option>
-				  <option>2</option>
-				  <option>3</option>
-				  <option>4</option>
-				  <option>5</option>
-				  <option>6</option>
-				  <option>7</option>
-				  <option>8</option>
-				  <option>9</option>
-				  <option>10</option>
-				  <option>11</option>
-				  <option>12</option>
-				  <option>13</option>
-				  <option>14</option>
-				  <option>15</option>
-				  <option>16</option>
-				  <option>17</option>
-				  <option>18</option>
-				  <option>19</option>
-				  <option>20</option>
-				  <option>21</option>
-				  <option>22</option>
-				  <option>23</option>
-				  <option>24</option>
-				  <option>25</option>
-				  <option>26</option>
-				  <option>27</option>
-				  <option>28</option>
-				  <option>29</option>
-				  <option>30</option>
-				  <option>31</option>
 				</select>
 			</label>
 			<label class="inline">
@@ -90,12 +59,8 @@
 				</select>
 			</label>
 			<label class="inline">
-				<select required="true" class="form-control" name="dateOfBirth.year" id="dateOfBirth_year" data-ng-model="form.user.dateOfBirth.year">
+				<select required="true" class="form-control" name="dateOfBirth.year" id="dateOfBirth_year" data-ng-model="form.user.dateOfBirth.year" data-ng-options="i for i in range(1900, 1995, 1)">
 				  <option value="">Year</option>
-				  <option>2</option>
-				  <option>3</option>
-				  <option>4</option>
-				  <option>5</option>
 				</select>
 			</label>
 		 </div>
@@ -107,7 +72,7 @@
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="emailConfirm" class="col-sm-3 control-label">Confirm</label>
+	    <label for="emailConfirm" class="col-sm-3 control-label">Confirm email</label>
 	    <div class="col-sm-9">
 	      <input type="email" required="true" class="form-control" id="emailConfirm" name="emailConfirm" data-ng-model="form.user.emailConfirm" placeholder="Please confirm your email address" />
 	    </div>
@@ -115,13 +80,13 @@
 	  <div class="form-group">
 	    <label for="inputPassword" class="col-sm-3 control-label">Password</label>
 	    <div class="col-sm-9">
-	      <input type="password" required="true"  ng-minlength="5" ng-maxlength="20"class="form-control" id="inputPassword" name="inputPassword" data-ng-model="form.user.password" placeholder="Please enter your password" />
+	      <input type="password" required="true"  ng-minlength="5" ng-maxlength="20"class="form-control" id="password" name="password" data-ng-model="form.user.password" placeholder="Please enter your password" data-popover="popoverPassword" />
 	    </div>
 	  </div>
 	  <div captcha="true" />
 	  <div class="form-group">
 	    <div class="col-sm-9">
-	      <button class="form-btn-offset btn btn-info" ng-disabled="signUpForm.$invalid">Sign up</button>
+	      <input type="submit" value="Sign up" class="form-btn-offset btn btn-info" ng-disabled="signUpForm.$invalid" />
 	    </div>
 	  </div>
 	  <div class="form-foot-note">
@@ -152,6 +117,32 @@
 		<ul>
 			<li>Be between 2 and 20 characters long</li>
 			<li>Contain only alpha-numeric characters</li>
+		</ul>
+	</div>
+</div>
+
+<div class="popover-container" id='popoverUsername' >
+	<p class="title">
+		Please enter your username
+	</p>
+	<div class="content">
+		<p>Your username is required and must:</p>
+		<ul>
+			<li>Be between 4 and 8 characters long</li>
+			<li>Contain only alpha-numeric characters</li>
+		</ul>
+	</div>
+</div>
+
+<div class="popover-container" id='popoverPassword' >
+	<p class="title">
+		Please enter your password
+	</p>
+	<div class="content">
+		<p>Your password is required and must:</p>
+		<ul>
+			<li>Be at least 6 characters long</li>
+			<li>Contain numbers and letters</li>
 		</ul>
 	</div>
 </div>

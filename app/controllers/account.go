@@ -33,6 +33,14 @@ func (c Account) PasswordReset(model viewmodels.PasswordResetViewModel) revel.Re
 	return c.Todo()
 }
 
+func (c Account) PasswordUpdateForm() revel.Result {
+	return c.RenderView()
+}
+
+func (c Account) PasswordUpdate(model viewmodels.PasswordResetViewModel) revel.Result {
+	return c.Todo()
+}
+
 func (c Account) SignOut() revel.Result {
 	return c.Todo()
 }

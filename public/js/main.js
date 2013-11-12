@@ -11,6 +11,7 @@ bitoolaPolls.config(['$interpolateProvider', '$routeProvider', '$locationProvide
 				  .when('/sign-in', {templateUrl: 'account/signinform', controller: 'AccountCtrl'})
 				  .when('/sign-out', {templateUrl: 'account/signout', controller: 'AccountCtrl'})
 				  .when('/reset-password', {templateUrl: 'account/passwordresetform', controller: 'AccountCtrl'})
+				  .when('/password-update', {templateUrl: 'account/passwordupdateform', controller: 'AccountCtrl'})
 				  .otherwise({ redirectTo: '/home'});
 }]);
 
@@ -24,8 +25,18 @@ bitoolaPolls.service('authService', function() {
 	this.authenticating = false;
 	this.isUserAuthenticated = function() {
 		return this.user && this.user.email;
-	}
+	};
     
+});
+
+bitoolaPolls.service('uiService', function() {
+	this.range = function(start, end, step) {
+    	var items = [];
+    	for (var i = start; i <= end; i+=step) {
+    		items.push(i);
+    	};
+    	return items;
+	};
 });
 
 bitoolaPolls.directive('pageTitle', ['seoService', function(seoService) {
@@ -108,8 +119,9 @@ bitoolaPolls.controller('HomeCtrl', ['$scope', '$http', 'seoService', 'authServi
 
 }]);
 
-bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', 'authService', function($scope, $http, authService) {
+bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', 'authService', 'uiService', function($scope, $http, authService, uiService) {
 	authService.authenticating = true;
+	$scope.range= uiService.range;
 }]);
 
 bitoolaPolls.run(['$rootScope', 'authService', function($rootScope, authService) {
