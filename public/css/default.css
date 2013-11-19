@@ -4,7 +4,7 @@ body {
 	min-height: 800px;
 }
 
-fieldset.form {
+.form {
 	width: 390px;
 	padding: 60px 20px 20px 20px;
 	position: relative;
@@ -15,29 +15,29 @@ fieldset.form {
 	margin-right: auto;
 }
 
-fieldset.form legend {
+.form legend {
 	width: 100%;
 	margin-left: -20px;
 	position: absolute;
 	top: 8px;
 }
 
-fieldset.form legend span {
+.form legend span {
 	margin-left: 25px;	
 	font-size: 25px;
 	font-weight: bold;
 }
 
-fieldset.form .col-sm-10 {
+.form .col-sm-10 {
 	width: 98%;
 }
 
-fieldset.form .control-label {
+.form .control-label {
 	padding-left: 0px;
 	padding-right: 0px;
 }
 
-fieldset.form select.form-control {
+.form select.form-control {
 	padding: 2px;
 }
 
@@ -115,7 +115,7 @@ fieldset.form select.form-control {
 #captchaContainer {
 	margin-left: 32px;
 	display: block;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 }
 
 .recaptchatable * {
@@ -135,3 +135,7 @@ fieldset.form select.form-control {
 	font-weight: bold;
 }
 
+.form-submit-error {
+	margin-bottom: 5px !important;
+	font-weight: bold;
+}

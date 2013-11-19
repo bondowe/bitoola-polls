@@ -10,7 +10,7 @@ type BaseController struct {
 	*revel.Controller
 }
 
-func (c BaseController) RenderView(extraRenderArgs ...interface{}) revel.Result {
+func (c BaseController) Render(extraRenderArgs ...interface{}) revel.Result {
 	// Get the calling function name.
 	_, _, line, ok := runtime.Caller(1)
 	if !ok {

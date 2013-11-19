@@ -1,7 +1,9 @@
 
 var bitoolaPolls = angular.module('bitoolaPolls', ['ngRoute', 'ngAnimate']);
 
-bitoolaPolls.config(['$interpolateProvider', '$routeProvider', '$locationProvider', function ($interpolateProvider, $routeProvider, $locationProvider) {
+bitoolaPolls.config(['$httpProvider', '$interpolateProvider', '$routeProvider', '$locationProvider', function ($httpProvider, $interpolateProvider, $routeProvider, $locationProvider) {
+	// $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
 	$interpolateProvider.startSymbol('[[');
 	$interpolateProvider.endSymbol(']]');
 	$locationProvider.html5Mode(false)
@@ -37,6 +39,20 @@ bitoolaPolls.service('uiService', function() {
     	};
     	return items;
 	};
+	this.months = [
+		{Name: "January", Key: 1},
+		{Name: "February", Key: 2},
+		{Name: "March", Key: 3},
+		{Name: "April", Key: 4},
+		{Name: "May", Key: 5},
+		{Name: "June", Key: 6},
+		{Name: "July", Key: 7},
+		{Name: "August", Key: 8},
+		{Name: "Septembre", Key: 9},
+		{Name: "Octobre", Key: 10},
+		{Name: "Novembre", Key: 11},
+		{Name: "Decembre", Key: 12}
+	];
 });
 
 bitoolaPolls.directive('pageTitle', ['seoService', function(seoService) {
@@ -119,9 +135,19 @@ bitoolaPolls.controller('HomeCtrl', ['$scope', '$http', 'seoService', 'authServi
 
 }]);
 
-bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', 'authService', 'uiService', function($scope, $http, authService, uiService) {
+bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', 'authService', 'uiService', '$window', function($scope, $http, authService, uiService, $window) {
 	authService.authenticating = true;
+	$scope.months = uiService.months;
 	$scope.range= uiService.range;
+	$scope.signUp = function () {
+		$http.post('/account/signup', $scope.form.user)
+		     .success(function(data, status, headers, config) {
+				$window.alert('Success ' + JSON.stringify(data));
+			  })
+		     .error(function(data, status, headers, config) {
+				$window.alert('Error ' + status);
+			  });
+	}
 }]);
 
 bitoolaPolls.run(['$rootScope', 'authService', function($rootScope, authService) {

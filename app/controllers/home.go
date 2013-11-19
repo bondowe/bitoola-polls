@@ -9,9 +9,9 @@ type Home struct {
 }
 
 func (c Home) Main() revel.Result {
-	return c.RenderView()
+	return c.Render()
 }
 
 func (c Home) Index() revel.Result {
-	return c.RenderView()
+	return c.Render()
 }
