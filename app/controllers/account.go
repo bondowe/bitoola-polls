@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/bondowe/bitoola.polls/app/models"
+	"github.com/bondowe/bitoola.polls/app/repositories"
 	"github.com/bondowe/bitoola.polls/app/viewmodels"
 	"github.com/robfig/revel"
 )
@@ -21,7 +23,21 @@ func (c Account) SignUp() revel.Result {
 
 	model.Validate(c.Validation)
 
-	return c.RenderJson(c.Validation.ErrorMap())
+	if c.Validation.HasErrors() {
+		c.Validation.Keep()
+		c.FlashParams()
+		// c.Flash.Error(msg, ...)
+		return c.Redirect(Account.SignUpForm)
+	}
+
+	user := models.User{
+		Firstname: model.Firstname,
+		Lastname:  model.Lastname,
+	}
+
+	repositories.CreateUser(&user)
+
+	return c.RenderJson(user)
 }
 
 func (c Account) SignInForm() revel.Result {

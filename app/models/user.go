@@ -7,7 +7,7 @@ import (
 
 type User struct {
 	Id           bson.ObjectId `bson: "_id"`
-	Firsname     string
+	Firstname    string
 	Lastname     string
 	Alias        string
 	Gender       string
