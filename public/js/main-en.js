@@ -140,7 +140,7 @@ bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', 'authService', 'uiSer
 	$scope.months = uiService.months;
 	$scope.range= uiService.range;
 	$scope.signUp = function () {
-		$http.post('/account/signup', $scope.form.user)
+		$http.post('/account/signup', $scope.form)
 		     .success(function(data, status, headers, config) {
 				$window.alert('Success ' + JSON.stringify(data));
 			  })

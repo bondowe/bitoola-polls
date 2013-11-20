@@ -3,6 +3,7 @@ package viewmodels
 import (
 	"github.com/robfig/revel"
 	"regexp"
+	"strings"
 )
 
 type SignUpViewModel struct {
@@ -19,34 +20,33 @@ type SignUpViewModel struct {
 	}
 }
 
-func (model *SignUpViewModel) Validate(v *revel.Validation) {
-	v.Required(model.Firstname)
-	v.MinSize(model.Firstname, 2)
-	v.MaxSize(model.Firstname, 20)
+func (form *SignUpViewModel) Validate(v *revel.Validation) {
+	v.Required(form.Firstname)
+	v.MinSize(form.Firstname, 2)
+	v.MaxSize(form.Firstname, 20)
 
-	v.Required(model.Lastname)
-	v.MinSize(model.Lastname, 2)
-	v.MaxSize(model.Lastname, 20)
+	v.Required(form.Lastname)
+	v.MinSize(form.Lastname, 2)
+	v.MaxSize(form.Lastname, 20)
 
-	v.Required(model.Alias)
-	v.MinSize(model.Alias, 3)
-	v.MaxSize(model.Alias, 10)
-	v.Match(model.Alias, regexp.MustCompile(`\w+(:?\d)*`))
+	v.Required(form.Alias)
+	v.MinSize(form.Alias, 3)
+	v.MaxSize(form.Alias, 10)
+	v.Match(form.Alias, regexp.MustCompile(`\w+(:?\d)*`))
 
-	v.Required(model.Gender)
-	v.Match(model.Gender, regexp.MustCompile(`^F|M$`))
+	v.Required(form.Gender)
+	v.Match(form.Gender, regexp.MustCompile(`^F|M$`))
 
-	v.Required(model.Email)
-	v.Email(model.Email)
+	v.Required(form.Email)
+	v.Email(form.Email)
 
-	v.Required(model.EmailConfirm)
-	v.Email(model.EmailConfirm)
+	v.Required(strings.EqualFold(form.Email, form.EmailConfirm)).Key("form.EmailConfirm")
 
-	v.Required(model.DateOfBirth.Day)
-	v.Range(model.DateOfBirth.Day, 1, 31)
+	v.Required(form.DateOfBirth.Day)
+	v.Range(form.DateOfBirth.Day, 1, 31)
 
-	v.Required(model.DateOfBirth.Month)
-	v.Range(model.DateOfBirth.Month, 1, 12)
+	v.Required(form.DateOfBirth.Month)
+	v.Range(form.DateOfBirth.Month, 1, 12)
 
-	v.Required(model.DateOfBirth.Year)
+	v.Required(form.DateOfBirth.Year)
 }

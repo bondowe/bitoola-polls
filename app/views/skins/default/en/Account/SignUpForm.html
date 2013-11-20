@@ -6,29 +6,29 @@
 	  <div class="form-group">
 	    <label for="firstname" class="col-sm-3 control-label">Firstname</label>
 	    <div class="col-sm-9">
-	      <input type="text" autofocus="true" required="true" ng-minlength="2" ng-maxlength="20" class="form-control" id="firstname" name="firstname" data-ng-model="form.user.Firstname" placeholder="Please enter your firstname" data-popover="popoverFirstname" />
+	      <input type="text" autofocus="true" required="true" ng-minlength="2" ng-maxlength="20" class="form-control" id="firstname" name="firstname" data-ng-model="form.Firstname" placeholder="Please enter your firstname" data-popover="popoverFirstname" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="lastname" class="col-sm-3 control-label">Lastname</label>
 	    <div class="col-sm-9">
-	      <input type="text" required="true" ng-minlength="2" ng-maxlength="20" class="form-control" id="lastname" name="lastname" data-ng-model="form.user.Lastname" placeholder="Please enter your lastname"  data-popover="popoverLastname" />
+	      <input type="text" required="true" ng-minlength="2" ng-maxlength="20" class="form-control" id="lastname" name="lastname" data-ng-model="form.Lastname" placeholder="Please enter your lastname"  data-popover="popoverLastname" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="alias" class="col-sm-3 control-label">Username</label>
 	    <div class="col-sm-9">
-	      <input type="text" required="true" ng-minlength="3" ng-maxlength="10" class="form-control" id="alias" name="alias" data-ng-model="form.user.Alias" placeholder="Please enter your username" data-popover="popoverAlias" />
+	      <input type="text" required="true" ng-minlength="3" ng-maxlength="10" class="form-control" id="alias" name="alias" data-ng-model="form.Alias" placeholder="Please enter your username" data-popover="popoverAlias" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	  	<label for="username" class="col-sm-3 control-label">Gender</label>
 	    <div class="col-sm-9">
 		  	<label class="radio-inline">
-				<input type="radio" id="genderFemale" name="gender" value="F" data-ng-model="form.user.Gender">Female
+				<input type="radio" id="genderFemale" name="gender" value="F" data-ng-model="form.Gender">Female
 			</label>
 			<label class="radio-inline">
-			  <input type="radio" id="genderMale" name="gender" value="M" data-ng-model="form.user.Gender">Male
+			  <input type="radio" id="genderMale" name="gender" value="M" data-ng-model="form.Gender">Male
 			</label>
 		 </div>
 	  </div>
@@ -36,17 +36,17 @@
 	  	<label for="dateOfBirth" class="col-sm-3 control-label">Date of birth</label>
 	    <div class="col-sm-9">
 		  	<label class="inline">
-				<select required="true" class="form-control" name="dateOfBirth_day" id="dateOfBirth_day" data-ng-model="form.user.DateOfBirth.Day" data-ng-options="i for i in range(1, 31, 1)">
+				<select required="true" class="form-control" name="dateOfBirth_day" id="dateOfBirth_day" data-ng-model="form.DateOfBirth.Day" data-ng-options="i for i in range(1, 31, 1)">
                   <option value="">Day</option>
 				</select>
 			</label>
 			<label class="inline">
-				<select required="true" class="form-control" name="dateOfBirth_month" id="dateOfBirth_month" data-ng-model="form.user.DateOfBirth.Month" data-ng-options="month.Key as month.Name for month in months">
+				<select required="true" class="form-control" name="dateOfBirth_month" id="dateOfBirth_month" data-ng-model="form.DateOfBirth.Month" data-ng-options="month.Key as month.Name for month in months">
 				  <option value="">Month</option>
 				</select>
 			</label>
 			<label class="inline">
-				<select required="true" class="form-control" name="dateOfBirth_year" id="dateOfBirth_year" data-ng-model="form.user.DateOfBirth.Year" data-ng-options="i for i in range(1900, 1995, 1)">
+				<select required="true" class="form-control" name="dateOfBirth_year" id="dateOfBirth_year" data-ng-model="form.DateOfBirth.Year" data-ng-options="i for i in range(1900, 1995, 1)">
 				  <option value="">Year</option>
 				</select>
 			</label>
@@ -55,19 +55,19 @@
 	  <div class="form-group">
 	    <label for="email" class="col-sm-3 control-label">Email</label>
 	    <div class="col-sm-9">
-	      <input type="email" required="true" class="form-control" id="email" name="email" data-ng-model="form.user.Email" placeholder="Please enter your email address" />
+	      <input type="email" required="true" class="form-control" id="email" name="email" data-ng-model="form.Email" placeholder="Please enter your email address" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="emailConfirm" class="col-sm-3 control-label">Confirm email</label>
 	    <div class="col-sm-9">
-	      <input type="email" required="true" class="form-control" id="emailConfirm" name="emailConfirm" data-ng-model="form.user.EmailConfirm" placeholder="Please confirm your email address" />
+	      <input type="email" required="true" class="form-control" id="emailConfirm" name="emailConfirm" data-ng-model="form.EmailConfirm" placeholder="Please confirm your email address" />
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="inputPassword" class="col-sm-3 control-label">Password</label>
 	    <div class="col-sm-9">
-	      <input type="password" required="true"  ng-minlength="5" ng-maxlength="20"class="form-control" id="password" name="password" data-ng-model="form.user.Password" placeholder="Please enter your password" data-popover="popoverPassword" />
+	      <input type="password" required="true"  ng-minlength="5" ng-maxlength="20"class="form-control" id="password" name="password" data-ng-model="form.Password" placeholder="Please enter your password" data-popover="popoverPassword" />
 	    </div>
 	  </div>
 

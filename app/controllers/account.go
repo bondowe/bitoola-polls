@@ -6,6 +6,7 @@ import (
 	"github.com/bondowe/bitoola.polls/app/repositories"
 	"github.com/bondowe/bitoola.polls/app/viewmodels"
 	"github.com/robfig/revel"
+	"time"
 )
 
 type Account struct {
@@ -18,26 +19,27 @@ func (c Account) SignUpForm() revel.Result {
 
 func (c Account) SignUp() revel.Result {
 
-	var model = viewmodels.SignUpViewModel{}
-	_ = json.NewDecoder(c.Request.Body).Decode(&model)
+	var form = viewmodels.SignUpViewModel{}
+	_ = json.NewDecoder(c.Request.Body).Decode(&form)
 
-	model.Validate(c.Validation)
+	form.Validate(c.Validation)
 
 	if c.Validation.HasErrors() {
-		c.Validation.Keep()
-		c.FlashParams()
-		// c.Flash.Error(msg, ...)
-		return c.Redirect(Account.SignUpForm)
+		return c.RenderJson(c.Validation.Errors)
 	}
 
 	user := models.User{
-		Firstname: model.Firstname,
-		Lastname:  model.Lastname,
-	}
+		Firstname:   form.Firstname,
+		Lastname:    form.Lastname,
+		Alias:       form.Alias,
+		Gender:      form.Gender,
+		DateOfBirth: time.Date(form.DateOfBirth.Year, time.Month(form.DateOfBirth.Month), form.DateOfBirth.Day, 0, 0, 0, 0, time.UTC),
+		Email:       form.Email,
+		CreatedAt:   time.Now()}
 
 	repositories.CreateUser(&user)
 
-	return c.RenderJson(user)
+	return c.RenderJson(c.Validation.Errors)
 }
 
 func (c Account) SignInForm() revel.Result {
