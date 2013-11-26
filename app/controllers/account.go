@@ -25,17 +25,21 @@ func (c Account) SignUp() revel.Result {
 	form.Validate(c.Validation)
 
 	if c.Validation.HasErrors() {
+		c.Response.Status = 418
 		return c.RenderJson(c.Validation.Errors)
 	}
 
 	user := models.User{
-		Firstname:   form.Firstname,
-		Lastname:    form.Lastname,
-		Alias:       form.Alias,
-		Gender:      form.Gender,
-		DateOfBirth: time.Date(form.DateOfBirth.Year, time.Month(form.DateOfBirth.Month), form.DateOfBirth.Day, 0, 0, 0, 0, time.UTC),
-		Email:       form.Email,
-		CreatedAt:   time.Now()}
+		Firstname:    form.Firstname,
+		Lastname:     form.Lastname,
+		Alias:        form.Alias,
+		Gender:       form.Gender,
+		DateOfBirth:  time.Date(form.DateOfBirth.Year, time.Month(form.DateOfBirth.Month), form.DateOfBirth.Day, 0, 0, 0, 0, time.UTC),
+		Email:        form.Email,
+		PasswordSalt: randString(8),
+		CreatedAt:    time.Now()}
+
+	user.PasswordHash = hashText(form.Password, user.PasswordSalt)
 
 	repositories.CreateUser(&user)
 

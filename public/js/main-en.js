@@ -145,7 +145,7 @@ bitoolaPolls.controller('AccountCtrl', ['$scope', '$http', 'authService', 'uiSer
 				$window.alert('Success ' + JSON.stringify(data));
 			  })
 		     .error(function(data, status, headers, config) {
-				$window.alert('Error ' + status);
+				$scope.error = true;
 			  });
 	}
 }]);

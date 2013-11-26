@@ -18,6 +18,7 @@ type SignUpViewModel struct {
 		Month int
 		Year  int
 	}
+	Password string
 }
 
 func (form *SignUpViewModel) Validate(v *revel.Validation) {
@@ -49,4 +50,8 @@ func (form *SignUpViewModel) Validate(v *revel.Validation) {
 	v.Range(form.DateOfBirth.Month, 1, 12)
 
 	v.Required(form.DateOfBirth.Year)
+
+	v.Required(form.Password)
+	v.MinSize(form.Password, 5)
+	v.MaxSize(form.Password, 20)
 }

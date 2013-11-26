@@ -1,6 +1,9 @@
 package controllers
 
 import (
+	"crypto/rand"
+	"crypto/sha1"
+	"fmt"
 	"github.com/robfig/revel"
 	"runtime"
 	"strings"
@@ -37,4 +40,20 @@ func (c BaseController) Render(extraRenderArgs ...interface{}) revel.Result {
 
 func (c BaseController) Lang() string {
 	return strings.Split(c.Request.Locale, "-")[0]
+}
+
+func hashText(text, salt string) string {
+	sh := sha1.New()
+	sh.Write([]byte(salt + text))
+	return fmt.Sprintf("%x", sh.Sum(nil))
+}
+
+func randString(n int) string {
+	const alphanum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+	var bytes = make([]byte, n)
+	rand.Read(bytes)
+	for i, b := range bytes {
+		bytes[i] = alphanum[b%byte(len(alphanum))]
+	}
+	return string(bytes)
 }
