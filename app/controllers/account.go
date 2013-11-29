@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/bondowe/bitoola.polls/app/models"
 	"github.com/bondowe/bitoola.polls/app/repositories"
 	"github.com/bondowe/bitoola.polls/app/viewmodels"
 	"github.com/robfig/revel"
@@ -29,19 +28,16 @@ func (c Account) SignUp() revel.Result {
 		return c.RenderJson(c.Validation.Errors)
 	}
 
-	user := models.User{
-		Firstname:    form.Firstname,
-		Lastname:     form.Lastname,
-		Alias:        form.Alias,
-		Gender:       form.Gender,
-		DateOfBirth:  time.Date(form.DateOfBirth.Year, time.Month(form.DateOfBirth.Month), form.DateOfBirth.Day, 0, 0, 0, 0, time.UTC),
-		Email:        form.Email,
-		PasswordSalt: randString(8),
-		CreatedAt:    time.Now()}
+	passwdSalt := randString(8)
+	passwdHash := hashText(form.Password, passwdSalt)
+	dob := time.Date(form.DateOfBirth.Year, time.Month(form.DateOfBirth.Month), form.DateOfBirth.Day, 0, 0, 0, 0, time.UTC)
 
-	user.PasswordHash = hashText(form.Password, user.PasswordSalt)
+	repositories.CreateUser(form.Firstname, form.Lastname, form.Alias, form.Gender, form.Email, passwdSalt, passwdHash, dob)
 
-	repositories.CreateUser(&user)
+	from, _ := revel.Config.String("email.noreply.address")
+	subject := c.Message("email.signup.subject")
+
+	repositories.QueueEmail(from, form.Email, subject, "BODY", time.Now())
 
 	return c.RenderJson(c.Validation.Errors)
 }

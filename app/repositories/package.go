@@ -4,6 +4,13 @@ import (
 	"labix.org/v2/mgo"
 )
 
+const (
+	DBBitoolaPolls = "bitoola-polls"
+
+	ColEmails = "emails"
+	ColUsers  = "users"
+)
+
 var (
 	sess *mgo.Session
 )

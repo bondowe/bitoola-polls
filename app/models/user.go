@@ -5,6 +5,15 @@ import (
 	"time"
 )
 
+type UserStatus int
+
+const (
+	USUnconfirmed UserStatus = iota
+	USActive
+	USSuspended
+	USPendingRemove
+)
+
 type User struct {
 	Id           bson.ObjectId `bson:"_id,omitempty"`
 	Firstname    string
@@ -17,4 +26,5 @@ type User struct {
 	PasswordSalt string
 	PasswordHash string
 	CreatedAt    time.Time
+	Status       UserStatus
 }
